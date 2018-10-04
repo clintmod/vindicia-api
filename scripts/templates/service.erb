@@ -1,0 +1,19 @@
+require 'vindicia/base_service'
+
+module Vindicia
+
+  class <%= class_name %> < BaseService
+
+    def wsdl
+      "<%= wsdl %>"
+    end
+
+    <%- method_defs.each do | method_def | -%>
+    def <%= method_def[:name] %> (<% method_def[:args].each_with_index do |arg_def, idx| %><%= arg_def[:name].snakecase %><%= ', ' if idx < method_def[:args].length - 1 %><% end %>)
+      process_request(binding)
+    end
+
+    <%- end -%>
+  end
+
+end

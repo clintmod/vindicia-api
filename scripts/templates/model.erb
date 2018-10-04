@@ -1,0 +1,17 @@
+require 'vindicia/base_model'
+
+module Vindicia
+
+  class <%= class_name %> < BaseModel
+
+    attr_accessor <% property_names.each do |prop_name| %> :<%= prop_name.snakecase %>, <% end %>
+
+    def initialize
+      <%- properties.each do |prop| -%>
+      @<%= prop[:name].snakecase -%> = nil
+      <%- end -%>
+    end
+
+  end
+
+end
